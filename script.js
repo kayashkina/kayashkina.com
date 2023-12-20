@@ -113,22 +113,17 @@ class ECG {
   }
 
   updateDate() {
-    let date = new Date();
-    date =
-      "" +
-      date.getFullYear() +
-      "-" +
-      date.getMonth() +
-      "-" +
-      date.getDate() +
-      " " +
-      date.getHours() +
-      ":" +
-      date.getMinutes() +
-      ":" +
-      date.getSeconds();
+    let options = {
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false,
+      timeZone: 'Europe/Berlin'
+    };
+    let formatter = new Intl.DateTimeFormat('de-DE', options);
+    let date = formatter.format(new Date());
     document.getElementById("date-value").innerHTML = date;
   }
+
   drawBPM(bpm) {
     document.getElementById("heart-rate-value").innerHTML = bpm;
   }
